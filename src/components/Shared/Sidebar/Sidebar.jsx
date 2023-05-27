@@ -1,50 +1,48 @@
 import React, { useState } from "react";
 import { MdOutlineDashboard } from "react-icons/md";
-import { AiOutlineAppstoreAdd, AiOutlineVerticalLeft } from "react-icons/ai";
-import { Link, Outlet } from "react-router-dom";
+
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const menus = [
    {
       name: "Dashboard",
-      link: "/dashboard/welcome",
+      link: "/",
       icon: MdOutlineDashboard,
    },
    {
-      name: "Add Project",
-      link: "/dashboard/add-project",
-      icon: AiOutlineVerticalLeft,
+      name: "Orders",
+      link: "/hj",
+      icon: MdOutlineDashboard,
    },
    {
-      name: "All Project",
-      link: "/dashboard/all-project",
-      icon: AiOutlineAppstoreAdd,
+      name: "Sellers",
+      link: "/jh",
+      icon: MdOutlineDashboard,
+   },
+   {
+      name: "Buyers",
+      link: "/jh",
+      icon: MdOutlineDashboard,
    },
 ];
 const Sidebar = () => {
    const [open, setOpen] = useState(true);
    return (
       <div>
-         <section className="flex">
+         <section className=" md:flex hidden">
             <div
-               className={`bg-red-600 h-[100vh]  overflow-y-auto ${
-                  open ? "w-[260px]" : "w-16"
-               } duration-500 text-gray1 px-4`}
+               className={`bg-secondary border-t border-gray1 lg:h-[87vh]   overflow-y-auto 
+                 w-[260px] duration-500 text-gray1 px-4`}
             >
-               {/* <div className="py-3 flex justify-end">
-               <HiMenuAlt3
-                  size={26}
-                  className="cursor-pointer"
-                  onClick={() => setOpen(!open)}
-               />
-            </div> */}
                <div className="mt-4 flex flex-col gap-4 relative">
                   {menus?.map((menu, i) => (
-                     <Link
+                     <NavLink
                         to={menu?.link}
                         key={i}
-                        className={` ${
-                           menu?.margin && "mt-5"
-                        } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-[#2a2c39] rounded-md`}
+                        style={({ isActive }) => ({
+                           background: isActive && "#333649",
+                        })}
+                        className={`group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-black rounded-md`}
                      >
                         <div>
                            {React.createElement(menu?.icon, { size: "20" })}
@@ -67,11 +65,11 @@ const Sidebar = () => {
                         >
                            {menu?.name}
                         </h2>
-                     </Link>
+                     </NavLink>
                   ))}
                </div>
             </div>
-            <div className="overflow-y-auto h-[86vh]" style={{ flex: 10 }}>
+            <div className="overflow-y-auto h-[86vh] p-5" style={{ flex: 10 }}>
                <Outlet />
             </div>
          </section>

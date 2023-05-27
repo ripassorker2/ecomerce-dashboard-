@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
    return (
-      <div className="bg-secondary">
+      <div className="bg-secondary sticky top-0">
          <div className="container px-4  py-4">
             <div className="flex justify-between items-center">
                <h2 className="text-primary lg:text-4xl text-[28px]  font-bold">
